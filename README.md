@@ -29,10 +29,3 @@ git clone https://github.com/dreamlong1/subtitle-extractor.git
 | 模型 | `deepseek-chat` / `gpt-4o-mini` |
 
 兼容所有 OpenAI 格式的 API。内置 4 套 Prompt 模板，支持自定义。
-
-## 版本
-
-| 版本 | 日期 | 更新 |
-|------|------|------|
-| v1.1 | 2026-03-11 | AI 总结功能、Prompt 模板、多配置管理 |
-| v1.0 | 2026-02-05 | 初始版本，字幕提取和下载 |

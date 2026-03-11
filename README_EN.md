@@ -29,10 +29,3 @@ Click ⚙️ in the popup to open settings:
 | Model | `deepseek-chat` / `gpt-4o-mini` |
 
 Compatible with all OpenAI-format APIs. Includes 4 built-in prompt templates with full customization support.
-
-## Changelog
-
-| Version | Date | Update |
-|---------|------|--------|
-| v1.1 | 2026-03-11 | AI summary, prompt templates, multi-config management |
-| v1.0 | 2026-02-05 | Initial release, subtitle extraction & download |
