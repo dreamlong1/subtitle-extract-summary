@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>设置 - 字幕插件</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <span>✨ 字幕插件</span>
+        </div>
+        <div class="nav-item active" data-page="settings">AI 设置</div>
+        <div class="nav-item" data-page="general">常规设置</div>
+        <div class="nav-item" data-page="about">关于</div>
+    </div>
+
+    <div class="main-content">
+        <!-- Settings Page -->
+        <div id="page-settings" style="display: flex; gap: 24px; width: 100%;">
+            <!-- Provider List -->
+            <div class="provider-list">
+                <div class="provider-header">
+                    <span class="provider-title">AI 服务配置</span>
+                    <div class="add-provider-btn" id="add-provider-btn">+ 添加</div>
+                </div>
+                <div id="provider-list-container">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Config Panel -->
+            <div class="config-panel" id="config-panel">
+                <div class="empty-state" id="empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <p>点击左侧"+ 添加"创建 AI 服务配置</p>
+                </div>
+                <div id="config-form" style="display: none;">
+                    <div class="config-header">
+                        <span class="config-title" id="config-title">编辑配置</span>
+                        <div id="test-connection-btn" class="test-link">连接测试</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">配置名称</label>
+                        <input type="text" id="provider-name" class="form-input" placeholder="例如：OpenAI、DeepSeek">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">API 接口地址</label>
+                        <input type="text" id="api-url" class="form-input" placeholder="https://api.openai.com/v1">
+                        <div class="form-hint">完整的 API Base URL，例如: https://api.openai.com/v1</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">API Key</label>
+                        <input type="password" id="api-key" class="form-input" placeholder="sk-...">
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="show-key">
+                        <label for="show-key">显示密钥</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">模型名称</label>
+                        <input type="text" id="api-model" class="form-input" placeholder="gpt-4o-mini">
+                        <div class="form-hint">例如: gpt-3.5-turbo, gpt-4o, deepseek-chat</div>
+                    </div>
+
+                    <!-- Collapsible: Prompt Settings -->
+                    <div class="collapsible" id="prompt-collapsible">
+                        <div class="collapsible-header">
+                            <span class="collapsible-title">📝 Prompt 设置</span>
+                            <span class="collapsible-arrow">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <div
+                                    style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <label class="form-label" style="margin-bottom: 0;">系统提示词 (System Prompt)</label>
+                                    <select id="prompt-template-selector"
+                                        style="padding: 4px; border-radius: 4px; border: 1px solid #ccc; font-size: 13px; background-color: #f9f9f9;">
+                                        <option value="">-- 选择预设模板 --</option>
+                                        <option value="template1">全能结构化总结</option>
+                                        <option value="template2">深度学习与知识萃取</option>
+                                        <option value="template3" selected>播客/长访谈浓缩</option>
+                                        <option value="template4">太长不看版 (TL;DR)</option>
+                                    </select>
+                                </div>
+                                <textarea id="system-prompt" class="form-input" rows="2"
+                                    placeholder="你是一个专业的视频内容总结助手..." style="resize: vertical;"></textarea>
+                                <div class="form-hint">定义 AI 的角色和行为。留空使用默认系统提示词。</div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">用户提示词 (User Prompt)</label>
+                                <textarea id="custom-prompt" class="form-input" rows="3" placeholder="请对以下视频字幕进行总结..."
+                                    style="resize: vertical;"></textarea>
+                                <div class="form-hint">自定义总结请求的提示词。支持变量：{title}=视频标题, {lang}=语言</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible: Advanced Parameters -->
+                    <div class="collapsible" id="advanced-collapsible">
+                        <div class="collapsible-header">
+                            <span class="collapsible-title">⚙️ 高级参数</span>
+                            <span class="collapsible-arrow">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <label class="form-label">最大输出长度 (max_tokens)</label>
+                                <div class="range-wrapper">
+                                    <input type="range" id="max-tokens" min="100" max="8000" step="100" value="4000">
+                                    <span class="range-value" id="max-tokens-value">4000</span>
+                                </div>
+                                <div class="form-hint">控制 AI 回复的最大 token 数量。越大输出越完整，但消耗更多。</div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">创造性温度 (temperature)</label>
+                                <div class="range-wrapper">
+                                    <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                                    <span class="range-value" id="temperature-value">0.7</span>
+                                </div>
+                                <div class="form-hint">0 = 严谨一致，1 = 平衡，2 = 最大随机性。推荐 0.5-0.8。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="save-btn" class="btn-save" style="margin-top: 20px;">保存配置</button>
+                    <div id="status-msg" class="status-msg"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- General Page -->
+        <div id="page-general" class="config-panel"
+            style="display: none; max-width: 800px; margin: 0 auto; height: fit-content;">
+            <div class="config-header">
+                <span class="config-title">常规设置</span>
+            </div>
+
+            <div class="checkbox-wrapper" style="margin-top: 20px; padding: 10px 0;">
+                <input type="checkbox" id="options-debug-mode" style="width: 18px; height: 18px;">
+                <label for="options-debug-mode" style="font-size: 14px; font-weight: 500; color: #333;">开启调试模式 (Debug
+                    Mode)</label>
+            </div>
+            <p style="color: #666; font-size: 13px; margin-left: 30px; margin-top: -10px;">
+                开启后控制台将输出详细的日志信息。建议仅在开发或排查问题时开启。
+            </p>
+        </div>
+
+        <!-- About Page -->
+        <div id="page-about" class="about-card" style="display: none;">
+            <div id="readme-content">
+                <p style="color: #999;">加载中...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../utils.js"></script>
+    <script src="options.js"></script>
+</body>
+
+</html>

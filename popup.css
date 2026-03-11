@@ -1,0 +1,327 @@
+/**
+ * Popup 页面样式
+ * 字幕提取器弹出窗口的所有 CSS 样式
+ */
+
+/* ===== 基础布局 ===== */
+body {
+    width: 600px;
+    padding: 20px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+    background-color: #ffffff;
+    color: #1d1d1f;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+}
+
+/* ===== 设置图标 ===== */
+.settings-icon {
+    position: absolute;
+    top: -6px;
+    right: 0;
+    padding: 4px;
+    cursor: pointer;
+    color: #888;
+    opacity: 0.6;
+    transition: all 0.2s;
+    z-index: 10;
+}
+
+.settings-icon:hover {
+    color: #007aff;
+    opacity: 1;
+    transform: rotate(30deg);
+}
+
+/* ===== 状态头部 ===== */
+.status-header {
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.status-success {
+    color: #2e7d32;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.status-waiting {
+    color: #888;
+    font-weight: 500;
+}
+
+/* ===== 自定义下拉框 ===== */
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    height: 32px;
+    line-height: 32px;
+    background: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-select__trigger:hover {
+    border-color: #007aff;
+}
+
+.custom-select__trigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 下拉箭头 */
+.arrow {
+    position: absolute;
+    right: 12px;
+    height: 10px;
+    width: 10px;
+}
+
+.arrow::before,
+.arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.2s;
+}
+
+.arrow::before {
+    left: -3px;
+    transform: rotate(45deg);
+    background-color: #888;
+}
+
+.arrow::after {
+    left: 3px;
+    transform: rotate(-45deg);
+    background-color: #888;
+}
+
+/* 下拉选项容器 */
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #d2d2d7;
+    border-radius: 6px;
+    background: #fff;
+    transition: all 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 20;
+    margin-top: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.custom-select.open .arrow::before {
+    transform: rotate(-45deg);
+}
+
+.custom-select.open .arrow::after {
+    transform: rotate(45deg);
+}
+
+/* 下拉选项 */
+.custom-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px 8px 30px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.custom-option:hover {
+    background-color: #007aff;
+    color: #fff;
+}
+
+.custom-option.selected {
+    font-weight: 500;
+}
+
+.custom-option.selected::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    height: 8px;
+    width: 4px;
+    border-bottom: 2px solid #007aff;
+    border-right: 2px solid #007aff;
+}
+
+.custom-option.selected:hover::after {
+    border-color: #fff;
+}
+
+/* ===== 按钮组 ===== */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+button {
+    flex: 1;
+    background-color: #007aff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #006ce6;
+}
+
+button:active {
+    transform: scale(0.98);
+    background-color: #005bb5;
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d1d1;
+    border-radius: 3px;
+}
+
+/* ===== Markdown 内容样式 ===== */
+.markdown-content {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+.markdown-content h1 {
+    font-size: 18px;
+}
+
+.markdown-content h2 {
+    font-size: 16px;
+}
+
+.markdown-content h3 {
+    font-size: 14px;
+}
+
+.markdown-content p {
+    margin: 0 0 10px 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+}
+
+.markdown-content li {
+    margin-bottom: 4px;
+}
+
+.markdown-content code {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    background-color: #f5f5f7;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.markdown-content pre {
+    background-color: #f5f5f7;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0 0 10px 0;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.markdown-content blockquote {
+    margin: 0 0 10px 0;
+    padding-left: 12px;
+    border-left: 3px solid #007aff;
+    color: #666;
+}
+
+.markdown-content strong {
+    font-weight: 600;
+    color: #000;
+}

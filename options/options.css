@@ -1,0 +1,388 @@
+/**
+ * Options 设置页面样式
+ * 字幕提取器设置页面的所有 CSS 样式
+ */
+
+/* ===== 基础布局 ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f7f8fa;
+    color: #333;
+    display: flex;
+    height: 100vh;
+}
+
+/* ===== 侧边栏 ===== */
+.sidebar {
+    width: 180px;
+    background-color: #fff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e91e63;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-item {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #f5f5f5;
+}
+
+.nav-item.active {
+    color: #e91e63;
+    background-color: #fff0f5;
+    border-right: 3px solid #e91e63;
+    font-weight: 500;
+}
+
+/* ===== 主内容区 ===== */
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+    display: flex;
+    gap: 24px;
+}
+
+/* ===== 服务商列表 ===== */
+.provider-list {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.provider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.provider-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.add-provider-btn {
+    color: #e91e63;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.add-provider-btn:hover {
+    text-decoration: underline;
+}
+
+.provider-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.provider-item:hover {
+    border-color: #e91e63;
+}
+
+.provider-item.selected {
+    border-color: #e91e63;
+    background-color: #fff0f5;
+}
+
+.provider-radio {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.provider-radio.active {
+    border-color: #e91e63;
+}
+
+.provider-radio.active::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #e91e63;
+    border-radius: 50%;
+}
+
+.provider-name {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.provider-delete {
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.provider-item:hover .provider-delete {
+    opacity: 1;
+}
+
+.provider-delete:hover {
+    color: #c62828;
+}
+
+/* ===== 配置面板 ===== */
+.config-panel {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+}
+
+.config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.config-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.test-link {
+    font-size: 13px;
+    color: #2e7d32;
+    cursor: pointer;
+}
+
+.test-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== 表单元素 ===== */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.form-hint {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.checkbox-wrapper input {
+    margin-right: 8px;
+    accent-color: #e91e63;
+}
+
+.checkbox-wrapper label {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ===== 按钮 ===== */
+.btn-save {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #d81b60;
+}
+
+/* ===== 状态消息 ===== */
+.status-msg {
+    display: none;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 12px;
+    font-size: 13px;
+    white-space: pre-wrap;
+}
+
+.status-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    display: block;
+}
+
+.status-error {
+    background-color: #ffebee;
+    color: #c62828;
+    display: block;
+}
+
+/* ===== 关于页面 ===== */
+.about-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+}
+
+.about-card h2 {
+    margin-top: 0;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+}
+
+.empty-state svg {
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+/* ===== 折叠面板 ===== */
+.collapsible {
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #f9f9f9;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.collapsible-header:hover {
+    background: #f0f0f0;
+}
+
+.collapsible-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+}
+
+.collapsible-arrow {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.collapsible.open .collapsible-arrow {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    display: none;
+    padding: 16px;
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.collapsible.open .collapsible-content {
+    display: block;
+}
+
+/* ===== 范围滑块 ===== */
+.range-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.range-wrapper input[type="range"] {
+    flex: 1;
+    accent-color: #e91e63;
+}
+
+.range-value {
+    min-width: 50px;
+    text-align: right;
+    font-size: 13px;
+    color: #666;
+}

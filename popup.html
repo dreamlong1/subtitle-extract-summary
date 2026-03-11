@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>字幕提取器</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Absolute Settings Icon -->
+        <div class="settings-icon" id="settings-btn" title="Open Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </div>
+
+        <!-- Status Header (Centered) -->
+        <div id="status-header" class="status-header status-waiting">
+            Detecting subtitles...
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="main-interface" style="display: none;">
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <div class="custom-select__trigger">
+                        <span>Select Subtitle</span>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="custom-options">
+                        <!-- Options injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="summarize-btn">总结</button>
+                <button id="download-btn">Download</button>
+            </div>
+
+            <!-- Summary Display Area -->
+            <div id="summary-area"
+                style="display: none; margin-top: 16px; padding: 12px; background: #fff; border: 1px solid #d2d2d7; border-radius: 6px;">
+
+                <!-- Status Steps -->
+                <div id="summary-status" style="display: none; font-size: 12px; margin-bottom: 10px;">
+                    <div id="status-step-1" class="status-step"
+                        style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; color: #888;">
+                        <span class="step-icon">○</span>
+                        <span>发送请求中...</span>
+                    </div>
+                    <div id="status-step-2" class="status-step"
+                        style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; color: #ccc;">
+                        <span class="step-icon">○</span>
+                        <span>等待响应...</span>
+                    </div>
+                    <div id="status-step-3" class="status-step"
+                        style="display: flex; align-items: center; gap: 8px; color: #ccc;">
+                        <span class="step-icon">○</span>
+                        <span>输出内容...</span>
+                    </div>
+                </div>
+
+                <div id="summary-result" style="display: none;">
+                    <div
+                        style="font-size: 12px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <span>AI 总结</span>
+                    </div>
+                    <div id="summary-text" class="markdown-content" style="max-height: 450px; overflow-y: auto;">
+                    </div>
+                </div>
+                <div id="summary-error" style="display: none; color: #c62828; font-size: 12px;"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="chrome-api.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
